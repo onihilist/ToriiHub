@@ -1,14 +1,11 @@
 package com.example.toriihub.controller;
 
 import com.example.toriihub.model.User;
-import com.example.toriihub.service.UserService;
+import com.example.toriihub.service.user.UserService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.validator.constraints.UUID;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/users")
