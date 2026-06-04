@@ -29,7 +29,7 @@ public class PostService {
     public Post createPost(UUID userId, Post post) {
         User user = userRepository.findById(userId)
             .orElseThrow(() -> new RuntimeException("User not found: " + userId));
-        post.setAuthor(user);
+        post.setUserId(user.getId());
         post.setAuthorName(user.getUsername());
         return postRepository.save(post);
     }

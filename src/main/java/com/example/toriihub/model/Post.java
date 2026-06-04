@@ -23,13 +23,11 @@ public class Post {
     @JsonIgnore
     private UUID id;
 
+    @Column(name = "user_id", nullable = false)
+    private UUID userId;
+
     @Column(name = "author_name")
     private String authorName;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private User author;
 
     @Column(nullable = false)
     private String content;
@@ -43,9 +41,6 @@ public class Post {
 
     @Column(nullable = false)
     private int reposts;
-
-    @Column(name = "comments")
-    private List<String> comments;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
