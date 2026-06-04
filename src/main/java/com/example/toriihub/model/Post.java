@@ -1,7 +1,10 @@
 package com.example.toriihub.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
@@ -17,6 +20,7 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(columnDefinition = "uuid", updatable = false, nullable = false)
+    @JsonIgnore
     private UUID id;
 
     @Column(name = "author_name")
@@ -24,6 +28,7 @@ public class Post {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private User author;
 
     @Column(nullable = false)
@@ -32,6 +37,15 @@ public class Post {
     @Column(columnDefinition = "text[]")
     @JdbcTypeCode(SqlTypes.ARRAY)
     private List<String> attachments;
+
+    @Column(nullable = false)
+    private int likes;
+
+    @Column(nullable = false)
+    private int reposts;
+
+    @Column(name = "comments")
+    private List<String> comments;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
