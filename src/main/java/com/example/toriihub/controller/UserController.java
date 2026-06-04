@@ -1,7 +1,7 @@
 package com.example.toriihub.controller;
 
 import com.example.toriihub.model.User;
-import com.example.toriihub.service.user.UserService;
+import com.example.toriihub.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

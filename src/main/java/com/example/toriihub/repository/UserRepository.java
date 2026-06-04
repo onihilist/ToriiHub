@@ -1,7 +1,7 @@
 package com.example.toriihub.repository;
 
 import com.example.toriihub.model.User;
-import org.hibernate.validator.constraints.UUID;
+import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

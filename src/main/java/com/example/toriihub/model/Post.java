@@ -19,8 +19,12 @@ public class Post {
     @Column(columnDefinition = "uuid", updatable = false, nullable = false)
     private UUID id;
 
-    @Column(nullable = false)
-    private String author;
+    @Column(name = "author_name")
+    private String authorName;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User author;
 
     @Column(nullable = false)
     private String content;
