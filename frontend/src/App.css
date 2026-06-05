@@ -9,7 +9,7 @@
 }
 
 .App-header {
-  background-color: #3f2c44;
+  background-color: #000000;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -20,17 +20,19 @@
 .toriihub-navbar {
   display: flex;
   align-items: left;
-  background-color: #624469;
+  background-color: #5e5e5e7a;
   margin-top: 2%;
   margin-left: 2%;
   margin-right: 2%;
   border-radius: 50px;
+  box-shadow: 0px 3px 6px rgba(255, 29, 29, 0.301);
 }
 
 .toriihub-navbar-logo {
   height: 95px;
   width: 95px;
   margin-left: 1%;
+  margin-top: 0.4%;
 }
 
 .App-link {
