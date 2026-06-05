@@ -27,6 +27,9 @@ CREATE TABLE comments (
         id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
         post_id     UUID NOT NULL,
         user_id     UUID NOT NULL,
+        attachments TEXT[],
+        likes       INT NOT NULL DEFAULT 0,
+        reposts     INT NOT NULL DEFAULT 0,
         content     VARCHAR(300) NOT NULL,
         created_at  TIMESTAMP DEFAULT NOW(),
 
