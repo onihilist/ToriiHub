@@ -1,0 +1,84 @@
+.App {
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #1d1d1d;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.toriihub-navbar {
+  display: flex;
+  align-items: center;
+  margin-top: 1%;
+  margin-left: 1%;
+  margin-right: 1%;
+  border-bottom: white solid 1px;
+  width: 98%;
+}
+
+.toriihub-navbar-logo {
+  height: 95px;
+  width: 95px;
+  margin-top: -1%;
+  margin-bottom: -1%;
+}
+
+.toriihub-navbar-links {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 0.5%;
+}
+
+.toriihub-navbar-link {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-family: 'Arial', sans-serif;
+}
+
+.toriihub-navbar-link:hover {
+  color: #ee3f39;
+}
+
+.toriihub-navbar-login-section {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 3%;
+}
+
+.toriihub-navbar-login-button {
+  padding: 8px 16px;
+  background-color: #ee3f39;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.toriihub-navbar-profile-pic {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-left: 15px;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

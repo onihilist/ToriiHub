@@ -18,7 +18,6 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(columnDefinition = "uuid", updatable = false, nullable = false)
-    @JsonIgnore
     private UUID id;
 
     @Column(name = "post_id", nullable = false)

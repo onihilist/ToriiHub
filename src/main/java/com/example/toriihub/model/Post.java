@@ -20,7 +20,6 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(columnDefinition = "uuid", updatable = false, nullable = false)
-    @JsonIgnore
     private UUID id;
 
     @Column(name = "user_id", nullable = false)
