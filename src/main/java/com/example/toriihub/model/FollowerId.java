@@ -5,18 +5,19 @@ import jakarta.persistence.Embeddable;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
 
 @Embeddable
 public class FollowerId implements Serializable {
 
     @Column(name = "follower_id")
-    private Long followerId;
+    private UUID followerId;
 
     @Column(name = "following_id")
-    private Long followingId;
+    private UUID followingId;
 
     public FollowerId() {}
-    public FollowerId(Long followerId, Long followingId) {
+    public FollowerId(UUID followerId, UUID followingId) {
         this.followerId = followerId;
         this.followingId = followingId;
     }

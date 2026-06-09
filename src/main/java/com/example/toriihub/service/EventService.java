@@ -70,25 +70,21 @@ public class EventService {
         User userFollowing = userRepository.findById(userFollowingId)
             .orElseThrow(() -> new RuntimeException("User not found: " + userFollowingId));
 
-        boolean alreadyFollowed = followerRepository.existsByFollowerIdAndFollowingId(
+        boolean alreadyFollowed = followerRepository.existsByFollower_IdAndFollowing_Id(
             userFollowing.getId(),
             userFollowed.getId()
         );
 
         if (alreadyFollowed) {
-            Follower follow = followerRepository.findByFollowerIdAndFollowingId(
-                userFollowing.getId(),
-                userFollowed.getId()
-            );;
-            followerRepository.deleteByFollowerIdAndFollowingId(
+            followerRepository.deleteByFollower_IdAndFollowing_Id(
                 userFollowing.getId(),
                 userFollowed.getId()
             );
-            followerRepository.save(follow);
         } else {
             Follower follow = new Follower();
-            follow.setFollowingId(userFollowed.getId());
-            follow.setFollowerId(userFollowing.getId());
+            follow.setId(new FollowerId(userFollowing.getId(), userFollowed.getId()));
+            follow.setFollower(userFollowing);
+            follow.setFollowing(userFollowed);
             followerRepository.save(follow);
         }
     }

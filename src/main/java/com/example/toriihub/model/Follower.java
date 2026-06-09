@@ -2,7 +2,6 @@ package com.example.toriihub.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import java.util.UUID;
 
 import java.time.LocalDateTime;
 
@@ -17,12 +16,12 @@ public class Follower {
     @ManyToOne
     @MapsId("followerId")
     @JoinColumn(name = "follower_id")
-    private UUID followerId;
+    private User follower;
 
     @ManyToOne
     @MapsId("followingId")
     @JoinColumn(name = "following_id", nullable = false)
-    private UUID followingId;
+    private User following;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
