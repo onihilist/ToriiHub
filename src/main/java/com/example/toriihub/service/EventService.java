@@ -1,9 +1,6 @@
 package com.example.toriihub.service;
 
-import com.example.toriihub.model.Like;
-import com.example.toriihub.model.Post;
-import com.example.toriihub.model.Repost;
-import com.example.toriihub.model.User;
+import com.example.toriihub.model.*;
 import com.example.toriihub.repository.*;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +16,7 @@ public class EventService {
     private final PostRepository postRepository;
     private final LikeRepository likeRepository;
     private final RepostRepository repostRepository;
+    private final FollowerRepository followerRepository;
 
     @Transactional
     public void likePost(UUID postId, UUID userId) {
@@ -62,8 +60,33 @@ public class EventService {
             repostRepository.save(repost);
             post.setReposts(post.getReposts() + 1);
         }
-
         postRepository.save(post);
+    }
+
+    @Transactional
+    public void followUser(UUID userFollowedId, UUID userFollowingId) {
+        User userFollowed = userRepository.findById(userFollowedId)
+            .orElseThrow(() -> new RuntimeException("User not found: " + userFollowedId));
+        User userFollowing = userRepository.findById(userFollowingId)
+            .orElseThrow(() -> new RuntimeException("User not found: " + userFollowingId));
+
+        boolean alreadyFollowed = followerRepository.existsByFollower_IdAndFollowing_Id(
+            userFollowing.getId(),
+            userFollowed.getId()
+        );
+
+        if (alreadyFollowed) {
+            followerRepository.deleteByFollower_IdAndFollowing_Id(
+                userFollowing.getId(),
+                userFollowed.getId()
+            );
+        } else {
+            Follower follow = new Follower();
+            follow.setId(new FollowerId(userFollowing.getId(), userFollowed.getId()));
+            follow.setFollower(userFollowing);
+            follow.setFollowing(userFollowed);
+            followerRepository.save(follow);
+        }
     }
 
 }

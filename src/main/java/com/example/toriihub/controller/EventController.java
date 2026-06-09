@@ -15,7 +15,6 @@ public class EventController {
 
     private final EventService eventService;
 
-    // TODO: Don't forget to also don't to like more than 1 time
     @PostMapping("/{postId}/like")
     public ResponseEntity<Void> likePost(
         @PathVariable UUID postId,
@@ -25,13 +24,21 @@ public class EventController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    // TODO: Don't forget to also don't to repost more than 1 time
     @PostMapping("/{postId}/repost")
     public ResponseEntity<Void> repostPost(
         @PathVariable UUID postId,
         @RequestParam UUID userId
     ) {
         eventService.repostPost(postId, userId);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PostMapping("/{userFollowedId}/follow")
+    public ResponseEntity<Void> followUser(
+        @PathVariable UUID userFollowedId,
+        @RequestParam UUID userFollowingId
+    ) {
+        eventService.followUser(userFollowedId, userFollowingId);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
