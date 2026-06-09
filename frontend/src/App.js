@@ -24,6 +24,7 @@ function App() {
           </div>
 
         </nav>
+        <br />
         <Routes>
           <Route path="/about" element={<Feed />} />
           <Route path="*" element={<h1>404 - Page not found</h1>} />
