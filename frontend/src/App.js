@@ -3,6 +3,9 @@ import defaultProfilePic from './assets/default-user.jpg';
 import './styles/App.css';
 import { Routes, Route, Link } from 'react-router-dom';
 import Feed from './pages/Feed';
+import { FeedPage } from './features/feed';
+import { ProfilePage } from './features/profile';
+import { MOCK_USER_ID } from './constants/mockUser';
 
 function App() {
   return (
@@ -10,23 +13,29 @@ function App() {
       <header className="App-header">
         <nav className="toriihub-navbar">
 
-          <img src={logo} className="toriihub-navbar-logo" alt="logo"/>
+          <Link to="/">
+            <img src={logo} className="toriihub-navbar-logo" alt="logo"/>
+          </Link>
 
           <div className="toriihub-navbar-links">
-            <a href="#" className="toriihub-navbar-link">Home</a>
-            <a href="#" className="toriihub-navbar-link">About</a>
-            <a href="#" className="toriihub-navbar-link">Contact</a>
+            <Link to="/" className="toriihub-navbar-link">Home</Link>
+            <Link to="/about" className="toriihub-navbar-link">About</Link>
+            <Link to={`/profile/${MOCK_USER_ID}`} className="toriihub-navbar-link">Profile</Link>
           </div>
 
           <div className="toriihub-navbar-login-section">
             <button className="toriihub-navbar-login-button">Login</button>
-            <img src={defaultProfilePic} className="toriihub-navbar-profile-pic" alt="profile"/>
+            <Link to={`/profile/${MOCK_USER_ID}`}>
+              <img src={defaultProfilePic} className="toriihub-navbar-profile-pic" alt="profile"/>
+            </Link>
           </div>
 
         </nav>
         <br />
         <Routes>
-          <Route path="/about" element={<Feed />} />
+          <Route path="/" element={<FeedPage />} />
+          <Route path="/profile/:id" element={<ProfilePage />} />
+          <Route path="/feed" element={<Feed />} />
           <Route path="*" element={<h1>404 - Page not found</h1>} />
         </Routes>
       </header>
